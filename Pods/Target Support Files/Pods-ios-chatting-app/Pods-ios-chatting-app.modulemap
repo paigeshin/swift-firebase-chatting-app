@@ -1,0 +1,6 @@
+framework module Pods_ios_chatting_app {
+  umbrella header "Pods-ios-chatting-app-umbrella.h"
+
+  export *
+  module * { export * }
+}
