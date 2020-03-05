@@ -12,5 +12,7 @@ target 'ios-chatting-app' do
   pod 'TextFieldEffects'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
+  pod 'Firebase/Storage'
+  pod 'ObjectMapper', '~> 3.4'
 
 end

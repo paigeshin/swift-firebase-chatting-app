@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>491660772767-p0taipv1kjqu7h2f73i415ar028rnc9v.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.491660772767-p0taipv1kjqu7h2f73i415ar028rnc9v</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCTPFl8i5r4nD5Er3qvEuN5F9lavsD_0NU</string>
+	<key>GCM_SENDER_ID</key>
+	<string>491660772767</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>paige.ios-chatting-app</string>
+	<key>PROJECT_ID</key>
+	<string>chatting-app-bd8a6</string>
+	<key>STORAGE_BUCKET</key>
+	<string>chatting-app-bd8a6.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:491660772767:ios:7ed80df4710bea6c9ea9aa</string>
+	<key>DATABASE_URL</key>
+	<string>https://chatting-app-bd8a6.firebaseio.com</string>
+</dict>
+</plist>

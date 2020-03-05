@@ -8,17 +8,23 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
+import TextFieldEffects
+import FirebaseRemoteConfig
 
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var emailTextField: HoshiTextField!
+    @IBOutlet weak var passwordTextField: HoshiTextField!
     
     let remoteConfig = RemoteConfig.remoteConfig()
     var color: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let statusBar = UIView()
         self.view.addSubview(statusBar)
         statusBar.snp.makeConstraints { (make) in
@@ -31,12 +37,29 @@ class LoginViewController: UIViewController {
         statusBar.backgroundColor = UIColor(hex: color)
         loginButton.backgroundColor = UIColor(hex: color)
         signInButton.backgroundColor = UIColor(hex: color)
-
-        // Do any additional setup after loading the view.
+        
+//        try! Auth.auth().signOut()
+        
+        //Login Success
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if user != nil {
+                let view = self.storyboard?.instantiateViewController(identifier: "MainViewTabBarController") as! UITabBarController
+                self.present(view, animated: true, completion: nil)
+            }
+        }
     }
     
 
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        
+        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
+            if error != nil {
+                let alert = UIAlertController(title: "Error", message: error.debugDescription, preferredStyle: .alert)
+                let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
         
     }
     
