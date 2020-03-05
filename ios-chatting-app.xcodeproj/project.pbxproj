@@ -16,6 +16,7 @@
 		28607637240BD8000058623F /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28607636240BD8000058623F /* RemoteConfig.plist */; };
 		28607639240BDD0D0058623F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28607638240BDD0D0058623F /* LoginViewController.swift */; };
 		2860763B240BEBB10058623F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860763A240BEBB10058623F /* SignUpViewController.swift */; };
+		28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */; };
 		28CFB4EA240F83A500A47EAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28CFB4E9240F83A500A47EAD /* GoogleService-Info.plist */; };
 		28CFB4EC240F841300A47EAD /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CFB4EB240F841300A47EAD /* PeopleViewController.swift */; };
 		28CFB4EF240F8CFF00A47EAD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CFB4EE240F8CFF00A47EAD /* UserModel.swift */; };
@@ -38,6 +39,7 @@
 		28607636240BD8000058623F /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		28607638240BDD0D0058623F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2860763A240BEBB10058623F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
 		28CFB4E9240F83A500A47EAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28CFB4EB240F841300A47EAD /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		28CFB4EE240F8CFF00A47EAD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
@@ -97,10 +99,10 @@
 		28607633240BD7CD0058623F /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				28AE9AB82411146B00F59AE9 /* TabBar */,
 				28607621240BCCF80058623F /* ViewController.swift */,
 				28607638240BDD0D0058623F /* LoginViewController.swift */,
 				2860763A240BEBB10058623F /* SignUpViewController.swift */,
-				28CFB4EB240F841300A47EAD /* PeopleViewController.swift */,
 				28CFB4F2240FB26700A47EAD /* ChatViewController.swift */,
 			);
 			path = Controller;
@@ -122,6 +124,15 @@
 				2860761F240BCCF80058623F /* SceneDelegate.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		28AE9AB82411146B00F59AE9 /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				28CFB4EB240F841300A47EAD /* PeopleViewController.swift */,
+				28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */,
+			);
+			path = TabBar;
 			sourceTree = "<group>";
 		};
 		28CFB4ED240F8CF200A47EAD /* Model */ = {
@@ -269,6 +280,7 @@
 			files = (
 				28607639240BDD0D0058623F /* LoginViewController.swift in Sources */,
 				28CFB4EF240F8CFF00A47EAD /* UserModel.swift in Sources */,
+				28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */,
 				28607622240BCCF80058623F /* ViewController.swift in Sources */,
 				2860761E240BCCF80058623F /* AppDelegate.swift in Sources */,
 				28CFB4EC240F841300A47EAD /* PeopleViewController.swift in Sources */,
