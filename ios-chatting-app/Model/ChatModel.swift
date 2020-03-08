@@ -26,12 +26,14 @@ class ChatModel: Mappable {
     public class Comment : Mappable {
         public var uid: String?
         public var message: String?
+        public var timestamp: Int?
         
         required init?(map: Map){}
         
         func mapping(map: Map){
             uid <- map["uid"]
             message <- map["message"]
+            timestamp <- map["timestamp"]
         }
         
     }

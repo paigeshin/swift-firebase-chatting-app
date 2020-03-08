@@ -78,7 +78,7 @@ class ChatViewController: UIViewController {
         
     }
     
-    //키보드 숨겨지기
+    //키보드 숨겨주기
     @objc func keyboardWillHide(notification: Notification){
         self.bottomConstraintOutlet.constant = 20
         self.view.layoutIfNeeded() //레이아웃 그려주기
@@ -108,7 +108,8 @@ class ChatViewController: UIViewController {
             //메세지 넣어주기.
             let value : Dictionary<String, Any> = [
                 "uid": uid!,
-                "message": textFieldMessage.text!
+                "message": textFieldMessage.text!,
+                "timestamp": ServerValue.timestamp() //firebase default value
             ]
             
             Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value) { (error, dbRef) in
@@ -180,11 +181,14 @@ class ChatViewController: UIViewController {
                 let comment = ChatModel.Comment(JSON: item.value as! [String : AnyObject])
                 self.comments.append(comment!)
             }
+      
             self.tableView.reloadData()
             
             if self.comments.count > 0 {
                 self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
             }
+            
+                
             
         }
         
@@ -202,17 +206,29 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
         //말풍선 적용
         if self.comments[indexPath.row].uid == uid {
             let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
             view.labelMessage!.text = self.comments[indexPath.row].message
             view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
+                
+            if let time: Int = self.comments[indexPath.row].timestamp {
+                print(time)
+                view.myTimestamp.text = time.toDayTime
+            }
+            
             return view
         } else {
             let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
             view.labelName.text = userModel?.userName
             view.labelMessage.text = self.comments[indexPath.row].message
             view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
+            
+            if let time: Int = self.comments[indexPath.row].timestamp {
+                view.destinationTimestamp.text = time.toDayTime
+            }
             
             let url = URL(string: self.userModel!.profileImageUrl!)
             URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
@@ -240,6 +256,9 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
 class MyMessageCell : UITableViewCell {
     
     @IBOutlet weak var labelMessage: UILabel!
+    @IBOutlet weak var myTimestamp: UILabel!
+    
+    
 }
 
 class DestinationMessageCell : UITableViewCell {
@@ -247,7 +266,20 @@ class DestinationMessageCell : UITableViewCell {
     @IBOutlet weak var labelMessage: UILabel!
     @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var labelName: UILabel!
+    @IBOutlet weak var destinationTimestamp: UILabel!
     
+    
+}
+
+extension Int {
+    
+    var toDayTime : String {
+        let dataFormatter = DateFormatter()
+        dataFormatter.locale = Locale(identifier: "ko_KR")
+        dataFormatter.dateFormat = "yyyy.MM.dd HH:mm"
+        let date = Date(timeIntervalSince1970: Double(self) / 1000)
+        return dataFormatter.string(from: date)
+    }
     
 }
 
