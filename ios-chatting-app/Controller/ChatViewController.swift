@@ -163,7 +163,7 @@ class ChatViewController: UIViewController {
             let fchild = snapshot
             let dictionary = fchild.value as! [String: Any]
             self.userModel = UserModel()
-            self.userModel?.profileImageUrl = dictionary[K.Firebase.UserDatabase.name] as? String
+            self.userModel?.profileImageUrl = dictionary[K.Firebase.UserDatabase.profileImageURL] as? String
             self.userModel?.uid = dictionary[K.Firebase.UserDatabase.uid] as? String
             self.userModel?.userName = dictionary[K.Firebase.UserDatabase.name] as? String
             self.getMessageList()
@@ -196,9 +196,6 @@ class ChatViewController: UIViewController {
 }
 
 
-
-
-
 extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -226,11 +223,14 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
             view.labelMessage.text = self.comments[indexPath.row].message
             view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
             
+            
             if let time: Int = self.comments[indexPath.row].timestamp {
                 view.destinationTimestamp.text = time.toDayTime
             }
             
             let url = URL(string: self.userModel!.profileImageUrl!)
+            
+            print(url)
             URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
                 DispatchQueue.main.async {
                     if let imageData = data {

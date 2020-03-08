@@ -265,7 +265,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wfy-i8-v0z" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1046" y="3149"/>
+            <point key="canvasLocation" x="-2345" y="3174"/>
         </scene>
         <!--Chat View Controller-->
         <scene sceneID="2kj-Os-xmG">
@@ -405,9 +405,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ga8-DD-bOu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-55.072463768115945" y="3148.6607142857142"/>
+            <point key="canvasLocation" x="-1248" y="3173"/>
         </scene>
-        <!--Chat-->
+        <!--Chat Rooms View Controller-->
         <scene sceneID="lAE-NY-0S0">
             <objects>
                 <viewController id="mNl-hd-XeL" customClass="ChatRoomsViewController" customModule="ios_chatting_app" customModuleProvider="target" sceneMemberID="viewController">
@@ -441,28 +441,35 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eSA-0s-ATR">
-                                                    <rect key="frame" x="66" y="41" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
+                                                    <rect key="frame" x="66" y="50" width="27" height="12"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                    <color key="textColor" red="0.4756349325" green="0.47564673419999998" blue="0.47564041610000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2011.11.11 11:11" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qBH-ZD-GZX">
+                                                    <rect key="frame" x="342.5" y="11" width="65.5" height="11"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                                    <color key="textColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="eSA-0s-ATR" secondAttribute="bottom" constant="8" id="012-o6-wis"/>
+                                                <constraint firstAttribute="bottom" secondItem="eSA-0s-ATR" secondAttribute="bottom" constant="8" id="3Xb-ev-P9d"/>
                                                 <constraint firstItem="DTG-uB-LEJ" firstAttribute="top" secondItem="j7H-yl-169" secondAttribute="top" constant="8" id="5px-bs-kOo"/>
                                                 <constraint firstItem="L54-tQ-qB4" firstAttribute="leading" secondItem="DTG-uB-LEJ" secondAttribute="trailing" constant="8" id="A4F-pP-Yqm"/>
                                                 <constraint firstAttribute="bottom" secondItem="DTG-uB-LEJ" secondAttribute="bottom" constant="8" id="JOb-gV-doX"/>
-                                                <constraint firstItem="eSA-0s-ATR" firstAttribute="leading" secondItem="DTG-uB-LEJ" secondAttribute="trailing" constant="8" id="P9N-X0-2QX"/>
-                                                <constraint firstItem="eSA-0s-ATR" firstAttribute="top" secondItem="L54-tQ-qB4" secondAttribute="bottom" constant="12" id="T8v-dT-Jsp"/>
+                                                <constraint firstAttribute="trailing" secondItem="qBH-ZD-GZX" secondAttribute="trailing" constant="6" id="Jhw-cH-dvy"/>
                                                 <constraint firstItem="L54-tQ-qB4" firstAttribute="top" secondItem="j7H-yl-169" secondAttribute="top" constant="8" id="eK2-U2-Gqv"/>
-                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eSA-0s-ATR" secondAttribute="trailing" constant="20" symbolic="YES" id="efa-1h-YpW"/>
+                                                <constraint firstItem="qBH-ZD-GZX" firstAttribute="top" secondItem="j7H-yl-169" secondAttribute="top" constant="11" id="g0g-lL-Znu"/>
                                                 <constraint firstItem="DTG-uB-LEJ" firstAttribute="leading" secondItem="j7H-yl-169" secondAttribute="leading" constant="8" id="gJ3-Md-Kxu"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="L54-tQ-qB4" secondAttribute="trailing" constant="20" symbolic="YES" id="thZ-AC-giY"/>
+                                                <constraint firstItem="eSA-0s-ATR" firstAttribute="leading" secondItem="DTG-uB-LEJ" secondAttribute="trailing" constant="8" id="wKg-j0-Oqf"/>
                                                 <constraint firstItem="DTG-uB-LEJ" firstAttribute="centerY" secondItem="j7H-yl-169" secondAttribute="centerY" id="y7b-ux-mwn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="labelLastMessage" destination="L54-tQ-qB4" id="0Cf-1T-wVj"/>
+                                            <outlet property="labelTimestamp" destination="qBH-ZD-GZX" id="AL6-8W-0kH"/>
                                             <outlet property="labelTitle" destination="eSA-0s-ATR" id="g3g-VU-vGx"/>
                                             <outlet property="profileImageView" destination="DTG-uB-LEJ" id="gkz-xK-flw"/>
                                         </connections>
@@ -479,14 +486,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vb2-sI-5gY"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Chat" image="person.3.fill" catalog="system" id="RU7-vD-I7s"/>
+                    <navigationItem key="navigationItem" id="Gs1-en-4aJ"/>
                     <connections>
                         <outlet property="tableView" destination="2dm-23-jbv" id="8S7-d4-uCu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BGL-Ev-pb4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1392.753623188406" y="2353.7946428571427"/>
+            <point key="canvasLocation" x="-30" y="3173"/>
         </scene>
         <!--Account-->
         <scene sceneID="OJd-qx-7pi">
@@ -502,7 +509,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rob-X4-bji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2186.9565217391305" y="2353.7946428571427"/>
+            <point key="canvasLocation" x="3097.1014492753625" y="2353.7946428571427"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="hVt-xQ-cDn">
@@ -516,7 +523,7 @@
                     </tabBar>
                     <connections>
                         <segue destination="3Pj-rR-4Cq" kind="relationship" relationship="viewControllers" id="wnX-xt-EBV"/>
-                        <segue destination="mNl-hd-XeL" kind="relationship" relationship="viewControllers" id="flh-Wh-pdy"/>
+                        <segue destination="3ol-Ad-tyF" kind="relationship" relationship="viewControllers" id="flh-Wh-pdy"/>
                         <segue destination="7bN-ba-BO0" kind="relationship" relationship="viewControllers" id="Ili-vi-pvT"/>
                     </connections>
                 </tabBarController>
@@ -541,7 +548,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZoN-Yg-Eu9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-417.39130434782612" y="2353.7946428571427"/>
+            <point key="canvasLocation" x="-1577" y="2354"/>
+        </scene>
+        <!--Chat-->
+        <scene sceneID="r7Z-hU-rCr">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3ol-Ad-tyF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Chat" image="person.3.fill" catalog="system" id="RU7-vD-I7s"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hfr-on-cHE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="mNl-hd-XeL" kind="relationship" relationship="rootViewController" id="uq7-Uh-KTx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vCF-AJ-WeQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="651" y="2354"/>
         </scene>
     </scenes>
     <resources>
