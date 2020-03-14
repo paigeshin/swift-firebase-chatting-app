@@ -106,18 +106,32 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         
         cell.addSubview(label)
         
+        let uiview_comment_background : UIView = UIView()
         let label_comment: UILabel! = UILabel()
+        
+        cell.addSubview(uiview_comment_background)
         cell.addSubview(label_comment)
+        label_comment.textColor = UIColor(hex: "ffffff")
         
         label_comment.snp.makeConstraints { (make) in
-            make.right.equalTo(cell)
-            make.centerY.equalTo(cell)
+            make.centerX.equalTo(uiview_comment_background)
+            make.centerY.equalTo(uiview_comment_background)
         }
         if let comment = array[indexPath.row].comment {
             label_comment.text = comment
         }
-        
-        let uiview_comment_background : UIView = UIView()
+    
+        uiview_comment_background.backgroundColor = UIColor(hex: "9dba72")
+        uiview_comment_background.snp.makeConstraints { (make) in
+            make.right.equalTo(cell).offset(-10)
+            make.centerY.equalTo(cell)
+            if let count = label_comment.text?.count {
+                make.width.equalTo(count * 10)
+            } else {
+                make.width.equalTo(0)
+            }
+            make.height.equalTo(30)
+        }
         
         return cell
     }

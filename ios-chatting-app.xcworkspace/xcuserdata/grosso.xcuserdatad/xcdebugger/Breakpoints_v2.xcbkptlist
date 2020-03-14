@@ -14,8 +14,8 @@
             filePath = "ios-chatting-app/Controller/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "DestinationMessageCell"
             landmarkType = "3">
             <Locations>
@@ -45,8 +45,8 @@
                   urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
                   offsetFromSymbolStart = "182">
                </Location>
                <Location
@@ -75,8 +75,8 @@
                   urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "268"
-                  endingLineNumber = "268"
+                  startingLineNumber = "304"
+                  endingLineNumber = "304"
                   offsetFromSymbolStart = "119">
                </Location>
                <Location

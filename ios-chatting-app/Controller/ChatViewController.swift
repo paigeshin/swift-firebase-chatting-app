@@ -29,6 +29,9 @@ class ChatViewController: UIViewController {
     var comments = [ChatModel.Comment]()
     var userModel: UserModel? //Destionation UserModel
     
+    var databaseRef: DatabaseReference?
+    var observe: UInt?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -56,7 +59,8 @@ class ChatViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         //observer 지워주기
         NotificationCenter.default.removeObserver(self)
-        self.tabBarController?.tabBar.isHidden = false //화면 나갈 때 다십 ㅗ여줌.
+        self.tabBarController?.tabBar.isHidden = false //화면 나갈 때 다시 보여줌
+        databaseRef?.removeObserver(withHandle: observe!)
     }
     
 
@@ -175,24 +179,50 @@ class ChatViewController: UIViewController {
     
     func getMessageList() {
         
-        Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments").observe(DataEventType.value) { (snapshot) in
+        databaseRef = Database.database().reference().child("chatrooms").child(self.chatRoomUid!).child("comments")
+        
+        observe = databaseRef?.observe(DataEventType.value, with: { (snapshot) in
             self.comments.removeAll()
+            
+            var readUserDic: Dictionary<String, AnyObject> = [:]
             
             print("snapshot: \(snapshot)")
             for item in snapshot.children.allObjects as! [DataSnapshot] {
+                let key = item.key as String
                 let comment = ChatModel.Comment(JSON: item.value as! [String : AnyObject])
+                comment?.readUsers[self.uid!] = true
+                readUserDic[key] = comment?.toJSON() as! NSDictionary //Firebase가 NSDictionary만 지원한다.
                 self.comments.append(comment!)
             }
-      
-            self.tableView.reloadData()
             
-            if self.comments.count > 0 {
-                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+            let nsDic = readUserDic as NSDictionary
+            snapshot.ref.updateChildValues(nsDic as! [AnyHashable: Any], withCompletionBlock: {(error, reference) in
+                self.tableView.reloadData()
+                
+                if self.comments.count > 0 {
+                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                }
+            })
+            
+        })
+        
+    }
+    
+    func setReadCount(label: UILabel?, position: Int?){
+        let readCounter = self.comments[position!].readUsers.count //db에서 불러온 값
+        Database.database().reference().child("chatrooms").child(chatRoomUid!).child("users").observeSingleEvent(of: DataEventType.value, with: {(snapshot) in
+            
+            let dictionary = snapshot.value as! [String: Any]
+            let noReadCount = dictionary.count - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
+            
+            if(noReadCount > 0){
+                label?.isHidden = false
+                label!.text = String(noReadCount)
+            } else {
+                label?.isHidden = true
             }
             
-                
-            
-        }
+        })
         
     }
 }
@@ -218,6 +248,8 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
                 view.myTimestamp.text = time.toDayTime
             }
             
+            setReadCount(label: view.labelReadCounter, position: indexPath.row)
+            
             return view
         } else {
             let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
@@ -232,7 +264,7 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
             
             let url = URL(string: self.userModel!.profileImageUrl!)
             
-            print(url)
+        
             URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
                 DispatchQueue.main.async {
                     if let imageData = data {
@@ -243,6 +275,9 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
                     view.imageViewProfile.clipsToBounds = true
                 }
             }).resume()
+            
+            setReadCount(label: view.destinationLabelReadCounter, position: indexPath.row)
+            
             return view
         }
         
@@ -259,6 +294,7 @@ class MyMessageCell : UITableViewCell {
     
     @IBOutlet weak var labelMessage: UILabel!
     @IBOutlet weak var myTimestamp: UILabel!
+    @IBOutlet weak var labelReadCounter: UILabel!
     
     
 }
@@ -269,6 +305,7 @@ class DestinationMessageCell : UITableViewCell {
     @IBOutlet weak var imageViewProfile: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var destinationTimestamp: UILabel!
+    @IBOutlet weak var destinationLabelReadCounter: UILabel!
     
     
 }
