@@ -14,7 +14,7 @@ class PeopleViewController: UIViewController {
     
     var array: [UserModel] = [UserModel]()
     var tableView: UITableView?
-  
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,13 +58,28 @@ class PeopleViewController: UIViewController {
         }
         
         let selectFriendButton = UIButton()
+        let buttonLabel = UILabel();
         view.addSubview(selectFriendButton)
+        view.addSubview(buttonLabel)
+        
+        buttonLabel.text = "초대하기"
+        buttonLabel.textColor = UIColor.white
+        
+        selectFriendButton.backgroundColor = UIColor.yellow
         selectFriendButton.snp.makeConstraints{(make) in
             make.bottom.equalTo(view).offset(-70)
             make.right.equalTo(view).offset(-20)
+            make.width.height.equalTo(50)
         }
-        selectFriendButton.backgroundColor = UIColor.black
+        
+        buttonLabel.snp.makeConstraints { (make) in
+            make.top.bottom.left.right.equalTo(selectFriendButton).offset(10)
+        }
+        
+        selectFriendButton.addSubview(buttonLabel)
         selectFriendButton.addTarget(self, action: #selector(showSelectFriendController), for: .touchUpInside)
+        selectFriendButton.layer.cornerRadius = 25
+        selectFriendButton.layer.masksToBounds = true
         
     }
     
@@ -133,7 +148,7 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         if let comment = array[indexPath.row].comment {
             label_comment.text = comment
         }
-    
+        
         uiview_comment_background.backgroundColor = UIColor(hex: "9dba72")
         uiview_comment_background.snp.makeConstraints { (make) in
             make.right.equalTo(cell).offset(-10)
