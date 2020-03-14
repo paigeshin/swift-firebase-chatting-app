@@ -30,6 +30,7 @@ class ChatModel: Mappable {
         public var message: String?
         public var timestamp: Int?
         public var readUsers: Dictionary<String, Bool> = [:]
+        public var imageUrl: String?
         
         required init?(map: Map){}
         
@@ -38,6 +39,7 @@ class ChatModel: Mappable {
             message <- map["message"]
             timestamp <- map["timestamp"]
             readUsers <- map["readUsers"]
+            imageUrl <- map["imageUrl"]
         }
         
     }

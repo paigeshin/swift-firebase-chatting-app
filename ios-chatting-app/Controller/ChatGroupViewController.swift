@@ -23,6 +23,8 @@ class ChatGroupViewController: UIViewController {
 
     var users: [String: AnyObject]? //유저 정보를 담음.  Key - UserInfo 이런 식으로 담겨져 있음.
     
+    var peopleCount: Int?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -50,11 +52,13 @@ class ChatGroupViewController: UIViewController {
         let value: Dictionary<String, Any> = [
             "uid": uid!,
             "message": textFieldMessage.text!,
-            "timestamp": ServerValue.timestamp()
+            "timestamp": ServerValue.timestamp(),
+            "imageUrl": users![uid!]!["profileImageUrl"] as! String
         ]
         
         Database.database().reference().child("chatrooms").child(destinationRoom!).child("comments").childByAutoId().setValue(value){(error, ref) in
             self.textFieldMessage!.text = ""
+            
         }
         
     }
@@ -91,7 +95,7 @@ class ChatGroupViewController: UIViewController {
                     self.tableView.reloadData()
                     
                     if self.comments.count > 0 {
-                        self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                        self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
                     }
                 })
                 
@@ -100,6 +104,43 @@ class ChatGroupViewController: UIViewController {
         })
         
         
+        
+    }
+    
+    func setReadCount(label: UILabel?, position: Int?){
+        let readCounter = self.comments[position!].readUsers.count //db에서 불러온 값
+        
+        //People count가 nil일 때만 값을 불러옴. - 서버 과부하를 막아줌. (읽은 사람)
+        if(peopleCount == nil){
+            
+            Database.database().reference().child("chatrooms").child(destinationRoom!).child("users").observeSingleEvent(of: DataEventType.value, with: {(snapshot) in
+                
+                let dictionary = snapshot.value as! [String: Any]
+                self.peopleCount = dictionary.count
+                let noReadCount = self.peopleCount! - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
+                
+                if(noReadCount > 0){
+                    label?.isHidden = false
+                    label!.text = String(noReadCount)
+                } else {
+                    label?.isHidden = true
+                }
+                
+            })
+            
+            //People count가 nil이 아니면 그냥 연산만 해준다.
+        } else {
+            
+            let noReadCount = peopleCount! - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
+            
+            if(noReadCount > 0){
+                label?.isHidden = false
+                label!.text = String(noReadCount)
+            } else {
+                label?.isHidden = true
+            }
+            
+        }
         
     }
     
@@ -123,11 +164,11 @@ extension ChatGroupViewController : UITableViewDelegate, UITableViewDataSource {
                 view.myTimestamp.text = time.toDayTime
             }
             
-//            setReadCount(label: view.labelReadCounter, position: indexPath.row)
+            setReadCount(label: view.labelReadCounter, position: indexPath.row)
             
             return view
         } else {
-            let destinationUser = users![self.comments[indexPath.row].uid!] //유저 정보 가져오기 위해서 각각 comment에 달려있는 uid를 가져옴.
+            let destinationUser = users![self.comments[indexPath.row].uid!] //유저 정보 가져오기 위해서 각각 comment에 달려있는 uid를 가져옴. 밑에는 여러 value들이 달려있다. ex) profileImageUrl
             let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
             view.labelName.text = destinationUser!["name"] as! String
             view.labelMessage.text = self.comments[indexPath.row].message
@@ -137,8 +178,8 @@ extension ChatGroupViewController : UITableViewDelegate, UITableViewDataSource {
                 view.destinationTimestamp.text = time.toDayTime
             }
             
-            let imageUrl = destinationUser!["profileImageUrl"] as! String
-            let url = URL(string: imageUrl)
+            let imageUrl = self.comments[indexPath.row].imageUrl
+            let url = URL(string: imageUrl!)
             
             URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
                 DispatchQueue.main.async {
@@ -151,7 +192,7 @@ extension ChatGroupViewController : UITableViewDelegate, UITableViewDataSource {
                 }
             }).resume()
             
-//            setReadCount(label: view.destinationLabelReadCounter, position: indexPath.row)
+            setReadCount(label: view.destinationLabelReadCounter, position: indexPath.row)
             
             return view
         }

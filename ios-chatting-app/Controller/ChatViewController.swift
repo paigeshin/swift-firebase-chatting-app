@@ -88,7 +88,7 @@ class ChatViewController: UIViewController {
         }) { (complete) in
             
             if self.comments.count > 0 {
-                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
             }
             
         }
