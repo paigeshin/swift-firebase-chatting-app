@@ -23,6 +23,8 @@ class SelectFriendViewController: UIViewController, BEMCheckBoxDelegate{
         tableView.dataSource = self
         loadUsers()
         
+        
+        
     }
     
     func createRoom(){

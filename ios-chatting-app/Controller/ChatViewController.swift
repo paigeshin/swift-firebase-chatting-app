@@ -165,7 +165,7 @@ class ChatViewController: UIViewController {
                         
                         let chatModel = ChatModel(JSON: chatRoomdic) //json으로 값을 받아옴.
                         
-                        if chatModel!.users[self.destinationUid!] != nil {
+                        if chatModel!.users[self.destinationUid!] != nil && chatModel?.users.count == 2 {
                             
                             if chatModel!.users[self.destinationUid!]! {
                                 self.chatRoomUid = item.key

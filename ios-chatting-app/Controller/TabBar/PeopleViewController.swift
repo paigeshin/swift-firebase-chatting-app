@@ -172,6 +172,7 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         let view = self.storyboard?.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController
         view?.destinationUid = array[indexPath.row].uid
         
+        
         //Navigation은 present 대신 push를 사용한다.
         self.navigationController?.pushViewController(view!, animated: true)
     }
