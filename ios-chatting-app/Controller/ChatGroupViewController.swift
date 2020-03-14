@@ -20,6 +20,8 @@ class ChatGroupViewController: UIViewController {
     var databaseRef: DatabaseReference?
     var observe: UInt?
     var comments: [ChatModel.Comment] = []
+
+    var users: [String: AnyObject]? //유저 정보를 담음.  Key - UserInfo 이런 식으로 담겨져 있음.
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,17 +29,14 @@ class ChatGroupViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         
-        let alert: UIAlertController = UIAlertController(title: "ChatGroupViewController", message: "Right", preferredStyle: .alert)
-        let action: UIAlertAction = UIAlertAction(title: "ChatGroupViewController", style: .default, handler: nil)
-        alert.addAction(action)
-         present(alert, animated: true, completion: nil)
         
         uid = Auth.auth().currentUser?.uid
 
+        //유저 몇명있는지 확인 및 유저 정보 가져오기
         Database.database().reference().child("users").observeSingleEvent(of: DataEventType.value) { (snapshot) in
                 
-            let dictionary = snapshot.value as! [String : AnyObject]
-            print(dictionary.count)
+            self.users = snapshot.value as! [String : AnyObject] //Json 형태로 값을 담아줌.
+            
             
         }
         
@@ -97,10 +96,7 @@ class ChatGroupViewController: UIViewController {
                 })
                 
             }
-            
-            
-            
-            
+
         })
         
         
@@ -116,15 +112,50 @@ extension ChatGroupViewController : UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
-        cell.labelMessage.text = self.comments[indexPath.row].message
-        cell.labelMessage.numberOfLines = 0
-        
-        if let time = self.comments[indexPath.row].timestamp {
-            cell.myTimestamp.text = time.toDayTime
+        //말풍선 적용
+        if self.comments[indexPath.row].uid == uid {
+            let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
+            view.labelMessage!.text = self.comments[indexPath.row].message
+            view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
+            
+            if let time: Int = self.comments[indexPath.row].timestamp {
+                print(time)
+                view.myTimestamp.text = time.toDayTime
+            }
+            
+//            setReadCount(label: view.labelReadCounter, position: indexPath.row)
+            
+            return view
+        } else {
+            let destinationUser = users![self.comments[indexPath.row].uid!] //유저 정보 가져오기 위해서 각각 comment에 달려있는 uid를 가져옴.
+            let view = tableView.dequeueReusableCell(withIdentifier: "DestinationMessageCell", for: indexPath) as! DestinationMessageCell
+            view.labelName.text = destinationUser!["name"] as! String
+            view.labelMessage.text = self.comments[indexPath.row].message
+            view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
+            
+            if let time: Int = self.comments[indexPath.row].timestamp {
+                view.destinationTimestamp.text = time.toDayTime
+            }
+            
+            let imageUrl = destinationUser!["profileImageUrl"] as! String
+            let url = URL(string: imageUrl)
+            
+            URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
+                DispatchQueue.main.async {
+                    if let imageData = data {
+                        view.imageViewProfile!.image = UIImage(data: imageData)
+                    }
+                    
+                    view.imageViewProfile?.layer.cornerRadius = view.imageViewProfile.frame.width / 2
+                    view.imageViewProfile.clipsToBounds = true
+                }
+            }).resume()
+            
+//            setReadCount(label: view.destinationLabelReadCounter, position: indexPath.row)
+            
+            return view
         }
-        
-        return cell
+
         
     }
 
