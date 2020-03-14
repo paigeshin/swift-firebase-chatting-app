@@ -498,14 +498,27 @@
         <!--Account-->
         <scene sceneID="OJd-qx-7pi">
             <objects>
-                <viewController id="7bN-ba-BO0" sceneMemberID="viewController">
+                <viewController id="7bN-ba-BO0" customClass="AccountViewController" customModule="ios_chatting_app" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5qd-tQ-KzW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ezN-f8-ag3">
+                                <rect key="frame" x="159.5" y="94" width="95" height="30"/>
+                                <state key="normal" title="상태메세지 입력"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="ezN-f8-ag3" firstAttribute="centerX" secondItem="5qd-tQ-KzW" secondAttribute="centerX" id="TyC-Ac-eh6"/>
+                            <constraint firstItem="ezN-f8-ag3" firstAttribute="top" secondItem="sZW-bZ-p65" secondAttribute="top" constant="50" id="e8J-rv-YfH"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="sZW-bZ-p65"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="person.crop.rectangle.fill" catalog="system" id="p1w-We-0QG"/>
+                    <connections>
+                        <outlet property="conditionsCommentButton" destination="ezN-f8-ag3" id="yhR-Ki-CuU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rob-X4-bji" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -12,6 +12,9 @@ PODS:
   - Firebase/Database (6.18.0):
     - Firebase/CoreOnly
     - FirebaseDatabase (~> 6.1.4)
+  - Firebase/Messaging (6.18.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (~> 4.3.0)
   - Firebase/RemoteConfig (6.18.0):
     - Firebase/CoreOnly
     - FirebaseRemoteConfig (~> 4.4.8)
@@ -64,6 +67,15 @@ PODS:
     - FirebaseInstallations (~> 1.0)
     - GoogleUtilities/Environment (~> 6.5)
     - GoogleUtilities/UserDefaults (~> 6.5)
+  - FirebaseMessaging (4.3.0):
+    - FirebaseAnalyticsInterop (~> 1.5)
+    - FirebaseCore (~> 6.6)
+    - FirebaseInstanceID (~> 4.3)
+    - GoogleUtilities/AppDelegateSwizzler (~> 6.5)
+    - GoogleUtilities/Environment (~> 6.5)
+    - GoogleUtilities/Reachability (~> 6.5)
+    - GoogleUtilities/UserDefaults (~> 6.5)
+    - Protobuf (>= 3.9.2, ~> 3.9)
   - FirebaseRemoteConfig (4.4.8):
     - FirebaseABTesting (~> 3.1)
     - FirebaseAnalyticsInterop (~> 1.4)
@@ -121,6 +133,7 @@ DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
+  - Firebase/Messaging
   - Firebase/RemoteConfig
   - Firebase/Storage
   - ObjectMapper (~> 3.4)
@@ -141,6 +154,7 @@ SPEC REPOS:
     - FirebaseDatabase
     - FirebaseInstallations
     - FirebaseInstanceID
+    - FirebaseMessaging
     - FirebaseRemoteConfig
     - FirebaseStorage
     - GoogleAppMeasurement
@@ -169,6 +183,7 @@ SPEC CHECKSUMS:
   FirebaseDatabase: 0144e0706a4761f1b0e8679572eba8095ddb59be
   FirebaseInstallations: 575cd32f2aec0feeb0e44f5d0110a09e5e60b47b
   FirebaseInstanceID: 7ee0d6777013bb952f377b41965bf132b6a075be
+  FirebaseMessaging: 4ec33842d36b3319e062e51fb8b35a74f726950d
   FirebaseRemoteConfig: 83d34cb1fa6fed2277370029b59b1883ae4861a4
   FirebaseStorage: 6c5263796af3b1be82ed173598aade47535fe125
   GoogleAppMeasurement: 39ecba10918b21c83877d392246157f65db351cf
@@ -184,6 +199,6 @@ SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   TextFieldEffects: 529b8aff706fb40f82c41c780c0777941a893796
 
-PODFILE CHECKSUM: 7d643871a0a555895561e83def75edecf7e6094c
+PODFILE CHECKSUM: c68af3170761dc3e6c68997ccc4c589c49d4038b
 
 COCOAPODS: 1.9.0.beta.2

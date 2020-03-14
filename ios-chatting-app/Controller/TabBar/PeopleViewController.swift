@@ -14,6 +14,7 @@ class PeopleViewController: UIViewController {
     
     var array: [UserModel] = [UserModel]()
     var tableView: UITableView?
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class PeopleViewController: UIViewController {
                 userModel.userName = dictionary[K.Firebase.UserDatabase.name] as? String
                 userModel.profileImageUrl = dictionary[K.Firebase.UserDatabase.profileImageURL] as? String
                 userModel.uid = dictionary[K.Firebase.UserDatabase.uid] as? String
+                userModel.comment = dictionary["comment"] as? String
                 
                 if userModel.uid != myUid {
                     self.array.append(userModel)
@@ -74,6 +76,9 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         let imageView = UIImageView()
         cell.addSubview(imageView)
@@ -99,6 +104,21 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
         }
         label.text = array[indexPath.row].userName
         
+        cell.addSubview(label)
+        
+        let label_comment: UILabel! = UILabel()
+        cell.addSubview(label_comment)
+        
+        label_comment.snp.makeConstraints { (make) in
+            make.right.equalTo(cell)
+            make.centerY.equalTo(cell)
+        }
+        if let comment = array[indexPath.row].comment {
+            label_comment.text = comment
+        }
+        
+        let uiview_comment_background : UIView = UIView()
+        
         return cell
     }
     
@@ -115,4 +135,5 @@ extension PeopleViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
+
 

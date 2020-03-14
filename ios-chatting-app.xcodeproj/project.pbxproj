@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		285326D8241CA601002C11AE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326D7241CA601002C11AE /* AccountViewController.swift */; };
 		2860761E240BCCF80058623F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761D240BCCF80058623F /* AppDelegate.swift */; };
 		28607620240BCCF80058623F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761F240BCCF80058623F /* SceneDelegate.swift */; };
 		28607622240BCCF80058623F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28607621240BCCF80058623F /* ViewController.swift */; };
@@ -16,8 +17,8 @@
 		28607637240BD8000058623F /* RemoteConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28607636240BD8000058623F /* RemoteConfig.plist */; };
 		28607639240BDD0D0058623F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28607638240BDD0D0058623F /* LoginViewController.swift */; };
 		2860763B240BEBB10058623F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860763A240BEBB10058623F /* SignUpViewController.swift */; };
+		28A3CF21241536300071B687 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28A3CF202415362F0071B687 /* GoogleService-Info.plist */; };
 		28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */; };
-		28CFB4EA240F83A500A47EAD /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 28CFB4E9240F83A500A47EAD /* GoogleService-Info.plist */; };
 		28CFB4EC240F841300A47EAD /* PeopleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CFB4EB240F841300A47EAD /* PeopleViewController.swift */; };
 		28CFB4EF240F8CFF00A47EAD /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CFB4EE240F8CFF00A47EAD /* UserModel.swift */; };
 		28CFB4F1240F93E500A47EAD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28CFB4F0240F93E500A47EAD /* Constants.swift */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		01ED4392FE03490EAC2205B7 /* Pods-ios-chatting-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-chatting-app.debug.xcconfig"; path = "Target Support Files/Pods-ios-chatting-app/Pods-ios-chatting-app.debug.xcconfig"; sourceTree = "<group>"; };
+		285326D7241CA601002C11AE /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		2860761A240BCCF80058623F /* ios-chatting-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-chatting-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2860761D240BCCF80058623F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2860761F240BCCF80058623F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,8 +41,9 @@
 		28607636240BD8000058623F /* RemoteConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfig.plist; sourceTree = "<group>"; };
 		28607638240BDD0D0058623F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		2860763A240BEBB10058623F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		28A3CF1D241530BB0071B687 /* ios-chatting-appRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ios-chatting-appRelease.entitlements"; sourceTree = "<group>"; };
+		28A3CF202415362F0071B687 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomsViewController.swift; sourceTree = "<group>"; };
-		28CFB4E9240F83A500A47EAD /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		28CFB4EB240F841300A47EAD /* PeopleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeopleViewController.swift; sourceTree = "<group>"; };
 		28CFB4EE240F8CFF00A47EAD /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		28CFB4F0240F93E500A47EAD /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -83,15 +86,16 @@
 		2860761C240BCCF80058623F /* ios-chatting-app */ = {
 			isa = PBXGroup;
 			children = (
+				28A3CF1D241530BB0071B687 /* ios-chatting-appRelease.entitlements */,
 				28607635240BD7E60058623F /* Support */,
 				28607634240BD7D80058623F /* View */,
 				28607633240BD7CD0058623F /* Controller */,
 				28CFB4ED240F8CF200A47EAD /* Model */,
 				28607626240BCCF90058623F /* Assets.xcassets */,
 				28CFB4F0240F93E500A47EAD /* Constants.swift */,
+				28A3CF202415362F0071B687 /* GoogleService-Info.plist */,
 				2860762B240BCCF90058623F /* Info.plist */,
 				28607636240BD8000058623F /* RemoteConfig.plist */,
-				28CFB4E9240F83A500A47EAD /* GoogleService-Info.plist */,
 			);
 			path = "ios-chatting-app";
 			sourceTree = "<group>";
@@ -131,6 +135,7 @@
 			children = (
 				28CFB4EB240F841300A47EAD /* PeopleViewController.swift */,
 				28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */,
+				285326D7241CA601002C11AE /* AccountViewController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -223,9 +228,9 @@
 			files = (
 				2860762A240BCCF90058623F /* LaunchScreen.storyboard in Resources */,
 				28607637240BD8000058623F /* RemoteConfig.plist in Resources */,
-				28CFB4EA240F83A500A47EAD /* GoogleService-Info.plist in Resources */,
 				28607627240BCCF90058623F /* Assets.xcassets in Resources */,
 				28607625240BCCF80058623F /* Main.storyboard in Resources */,
+				28A3CF21241536300071B687 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +285,7 @@
 			files = (
 				28607639240BDD0D0058623F /* LoginViewController.swift in Sources */,
 				28CFB4EF240F8CFF00A47EAD /* UserModel.swift in Sources */,
+				285326D8241CA601002C11AE /* AccountViewController.swift in Sources */,
 				28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */,
 				28607622240BCCF80058623F /* ViewController.swift in Sources */,
 				2860761E240BCCF80058623F /* AppDelegate.swift in Sources */,
@@ -451,13 +457,15 @@
 			baseConfigurationReference = 68BA5F533DB88F15B44EA2F7 /* Pods-ios-chatting-app.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ios-chatting-app/ios-chatting-appRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RD4NSY7TZY;
 				INFOPLIST_FILE = "ios-chatting-app/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "paige.ios-chatting-app";
+				PRODUCT_BUNDLE_IDENTIFIER = com.haii.chattingtoyproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

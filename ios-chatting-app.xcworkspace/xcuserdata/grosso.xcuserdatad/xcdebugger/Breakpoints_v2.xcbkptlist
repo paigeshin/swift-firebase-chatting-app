@@ -20,96 +20,97 @@
             landmarkType = "3">
             <Locations>
                <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 14e32772033c6c39"
+                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - e581c51e43f9fec"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "ios_chatting_app.DestinationMessageCell.labelMessage.getter : Swift.Optional&lt;__C.UILabel&gt;"
+                  symbolName = "ios_chatting_app.DestinationMessageCell.__allocating_init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; ios_chatting_app.DestinationMessageCell"
                   moduleName = "ios-chatting-app"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
-                  offsetFromSymbolStart = "88">
-               </Location>
-               <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - ec6238ff03260045"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ios_chatting_app.DestinationMessageCell.labelMessage.setter : Swift.Optional&lt;__C.UILabel&gt;"
-                  moduleName = "ios-chatting-app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 8e62ed1a8d7a0334"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ios_chatting_app.DestinationMessageCell.labelMessage.modify : Swift.Optional&lt;__C.UILabel&gt;"
-                  moduleName = "ios-chatting-app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
+                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
                   endingLineNumber = "0"
-                  offsetFromSymbolStart = "67">
+                  offsetFromSymbolStart = "12">
                </Location>
                <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 62616522dcd792e6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "ios_chatting_app.DestinationMessageCell.labelMessage.modify : Swift.Optional&lt;__C.UILabel&gt; with unmangled suffix &quot;.resume.0&quot;"
-                  moduleName = "ios-chatting-app"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 43bc6f7f520e8b3c"
+                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 10d316df5cdac092"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "ios_chatting_app.DestinationMessageCell.init(style: __C.UITableViewCellStyle, reuseIdentifier: Swift.Optional&lt;Swift.String&gt;) -&gt; ios_chatting_app.DestinationMessageCell"
                   moduleName = "ios-chatting-app"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
+                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
+                  startingLineNumber = "268"
+                  endingLineNumber = "268"
                   offsetFromSymbolStart = "182">
                </Location>
                <Location
-                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 23df160c283595cb"
+                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 9a1c557f0463a78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_chatting_app.DestinationMessageCell.__allocating_init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ios_chatting_app.DestinationMessageCell&gt;"
+                  moduleName = "ios-chatting-app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 70b06fac26e1de65"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "ios_chatting_app.DestinationMessageCell.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ios_chatting_app.DestinationMessageCell&gt;"
                   moduleName = "ios-chatting-app"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/ios-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
+                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "266"
-                  endingLineNumber = "266"
+                  startingLineNumber = "268"
+                  endingLineNumber = "268"
                   offsetFromSymbolStart = "119">
                </Location>
+               <Location
+                  uuid = "E7A23040-5605-4E51-8867-617A4FB12E2B - 11d6d0268257d952"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ios_chatting_app.DestinationMessageCell.__deallocating_deinit"
+                  moduleName = "ios-chatting-app"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/grosso/Desktop/Programming_source/Learning/swift-firebase-chatting-app/ios-chatting-app/Controller/ChatViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "324071A6-BD62-4E79-8EFA-6DDF17021E94"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ios-chatting-app/Controller/TabBar/AccountViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "AccountViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

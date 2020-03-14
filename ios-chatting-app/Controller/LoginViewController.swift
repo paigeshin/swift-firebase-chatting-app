@@ -45,6 +45,14 @@ class LoginViewController: UIViewController {
             if user != nil {
                 let view = self.storyboard?.instantiateViewController(identifier: "MainViewTabBarController") as! UITabBarController
                 self.present(view, animated: true, completion: nil)
+                //token 받아오는 코드 작성
+                let uid = Auth.auth().currentUser?.uid
+
+                if let token = Messaging.messaging().fcmToken {
+                    Database.database().reference().child("users").child(uid!).updateChildValues(["pushToken": token])
+                }
+                
+                
             }
         }
     }

@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+#platform :ios, '13.2'
 
 target 'ios-chatting-app' do
   # Comment the next line if you don't want to use dynamic frameworks
@@ -13,6 +13,9 @@ target 'ios-chatting-app' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
   pod 'ObjectMapper', '~> 3.4'
-
+#  pod 'Kingfisher', '~> 3.2'
+  
+  
 end
