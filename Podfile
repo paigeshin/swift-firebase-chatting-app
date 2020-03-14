@@ -16,6 +16,6 @@ target 'ios-chatting-app' do
   pod 'Firebase/Messaging'
   pod 'ObjectMapper', '~> 3.4'
 #  pod 'Kingfisher', '~> 3.2'
-  
+  pod 'BEMCheckBox'
   
 end

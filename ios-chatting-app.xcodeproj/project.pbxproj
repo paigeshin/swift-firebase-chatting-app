@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		285326D8241CA601002C11AE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326D7241CA601002C11AE /* AccountViewController.swift */; };
+		285326DB241CCEC4002C11AE /* SelectFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326DA241CCEC4002C11AE /* SelectFriendViewController.swift */; };
 		2860761E240BCCF80058623F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761D240BCCF80058623F /* AppDelegate.swift */; };
 		28607620240BCCF80058623F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761F240BCCF80058623F /* SceneDelegate.swift */; };
 		28607622240BCCF80058623F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28607621240BCCF80058623F /* ViewController.swift */; };
@@ -30,6 +31,8 @@
 /* Begin PBXFileReference section */
 		01ED4392FE03490EAC2205B7 /* Pods-ios-chatting-app.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-chatting-app.debug.xcconfig"; path = "Target Support Files/Pods-ios-chatting-app/Pods-ios-chatting-app.debug.xcconfig"; sourceTree = "<group>"; };
 		285326D7241CA601002C11AE /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		285326D9241CCBFC002C11AE /* BEMCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BEMCheckbox.h; sourceTree = "<group>"; };
+		285326DA241CCEC4002C11AE /* SelectFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFriendViewController.swift; sourceTree = "<group>"; };
 		2860761A240BCCF80058623F /* ios-chatting-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-chatting-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2860761D240BCCF80058623F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2860761F240BCCF80058623F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 				28A3CF202415362F0071B687 /* GoogleService-Info.plist */,
 				2860762B240BCCF90058623F /* Info.plist */,
 				28607636240BD8000058623F /* RemoteConfig.plist */,
+				285326D9241CCBFC002C11AE /* BEMCheckbox.h */,
 			);
 			path = "ios-chatting-app";
 			sourceTree = "<group>";
@@ -136,6 +140,7 @@
 				28CFB4EB240F841300A47EAD /* PeopleViewController.swift */,
 				28AE9AB92411148D00F59AE9 /* ChatRoomsViewController.swift */,
 				285326D7241CA601002C11AE /* AccountViewController.swift */,
+				285326DA241CCEC4002C11AE /* SelectFriendViewController.swift */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */,
 				28607622240BCCF80058623F /* ViewController.swift in Sources */,
 				2860761E240BCCF80058623F /* AppDelegate.swift in Sources */,
+				285326DB241CCEC4002C11AE /* SelectFriendViewController.swift in Sources */,
 				28CFB4EC240F841300A47EAD /* PeopleViewController.swift in Sources */,
 				28CFB4F5240FB3DB00A47EAD /* ChatModel.swift in Sources */,
 				28607620240BCCF80058623F /* SceneDelegate.swift in Sources */,
@@ -447,6 +453,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "paige.ios-chatting-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ios-chatting-app/BEMCheckBox.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -467,6 +474,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haii.chattingtoyproject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ios-chatting-app/BEMCheckBox.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
