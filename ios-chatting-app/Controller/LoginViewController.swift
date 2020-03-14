@@ -29,6 +29,11 @@ class LoginViewController: UIViewController {
         self.view.addSubview(statusBar)
         statusBar.snp.makeConstraints { (make) in
             make.right.top.left.equalTo(view)
+            if(UIScreen.main.nativeBounds.height == 236) {
+                make.height.equalTo(40)
+            } else {
+                make.height.equalTo(20)
+            }
             make.height.equalTo(20)
         }
         
