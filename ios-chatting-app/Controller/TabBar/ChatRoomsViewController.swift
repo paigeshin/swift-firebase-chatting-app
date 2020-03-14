@@ -14,6 +14,7 @@ class ChatRoomsViewController: UIViewController {
 
     var uid: String!
     var chatrooms: [ChatModel]! = []
+    var chatroomKeys: [String] = []
     var destionationUsers: [String] = [] //Destionation User들을 담은 어레이
     
     @IBOutlet weak var tableView: UITableView!
@@ -38,6 +39,7 @@ class ChatRoomsViewController: UIViewController {
                 if let chatroomic = item.value as? [String:AnyObject]{
                     let chatModel = ChatModel(JSON: chatroomic)
                     print("ChatModel \(chatModel!.users)")
+                    self.chatroomKeys.append(item.key)
                     self.chatrooms.append(chatModel!)
                 }
             }
@@ -122,6 +124,7 @@ extension ChatRoomsViewController : UITableViewDelegate, UITableViewDataSource {
         
         if(chatrooms[indexPath.row].users.count > 2){
             let view = self.storyboard?.instantiateViewController(identifier: "ChatGroupViewController") as! ChatGroupViewController
+            view.destinationRoom = chatroomKeys[indexPath.row]
             self.navigationController?.pushViewController(view, animated: true)
         } else {
             let destionationUid = destionationUsers[indexPath.row]

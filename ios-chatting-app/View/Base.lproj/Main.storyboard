@@ -504,6 +504,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="P3T-oU-2Yx"/>
                     </view>
+                    <connections>
+                        <outlet property="buttonSend" destination="kQ9-zz-W8R" id="c2g-Vk-AFS"/>
+                        <outlet property="tableView" destination="kIc-wh-z6c" id="DqA-Kk-zRI"/>
+                        <outlet property="textFieldMessage" destination="3iA-mT-upy" id="qdN-6h-4CK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iL3-X9-TW0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -11,27 +11,56 @@ import Firebase
 
 class ChatGroupViewController: UIViewController {
 
+    var destinationRoom: String?
+    var uid: String?
+    @IBOutlet weak var textFieldMessage: UITextField!
+    @IBOutlet weak var buttonSend: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        uid = Auth.auth().currentUser?.uid
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        
         Database.database().reference().child("users").observeSingleEvent(of: DataEventType.value) { (snapshot) in
-            
-            
+                
             let dictionary = snapshot.value as! [String : AnyObject]
             print(dictionary.count)
             
         }
         
+        buttonSend.addTarget(self, action: #selector(sendMessage), for: .touchUpInside)
+        
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @objc func sendMessage(){
+        
+        let value: Dictionary<String, Any> = [
+            "uid": uid!,
+            "message": textFieldMessage.text!,
+            "timestamp": ServerValue.timestamp()
+        ]
+        
+        Database.database().reference().child("chatrooms").child(destinationRoom!).child("comments").childByAutoId().setValue(value){(error, ref) in
+            self.textFieldMessage!.text = ""
+        }
+        
     }
-    */
-
+    
 }
+
+//extension ChatGroupViewController : UITableViewDelegate, UITableViewDataSource {
+//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        <#code#>
+//    }
+//
+//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+//        <#code#>
+//    }
+//
+//
+//
+//
+//}
