@@ -31,6 +31,7 @@ class ChatViewController: UIViewController {
     
     var databaseRef: DatabaseReference?
     var observe: UInt?
+    var peopleCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +52,7 @@ class ChatViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification: )), name: UIResponder.keyboardWillShowNotification, object: nil);
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification: )), name: UIResponder.keyboardWillHideNotification, object: nil);
         
     }
@@ -63,7 +64,7 @@ class ChatViewController: UIViewController {
         databaseRef?.removeObserver(withHandle: observe!)
     }
     
-
+    
     
     //키보드 보여주기
     @objc func keyboardWillShow(notification: Notification) {
@@ -115,7 +116,8 @@ class ChatViewController: UIViewController {
             let value : Dictionary<String, Any> = [
                 "uid": uid!,
                 "message": textFieldMessage.text!,
-                "timestamp": ServerValue.timestamp() //firebase default value
+                "timestamp": ServerValue.timestamp(), //firebase default value
+                "readUsers": [uid! : true]
             ]
             
             Database.database().reference().child("chatrooms").child(chatRoomUid!).child("comments").childByAutoId().setValue(value) { (error, dbRef) in
@@ -189,31 +191,66 @@ class ChatViewController: UIViewController {
             print("snapshot: \(snapshot)")
             for item in snapshot.children.allObjects as! [DataSnapshot] {
                 let key = item.key as String
-                let comment = ChatModel.Comment(JSON: item.value as! [String : AnyObject])
-                comment?.readUsers[self.uid!] = true
-                readUserDic[key] = comment?.toJSON() as! NSDictionary //Firebase가 NSDictionary만 지원한다.
+                
+                let comment = ChatModel.Comment(JSON: item.value as! [String : AnyObject]) //일단 값을 집어 넣을 comment
+                let comment_modify = ChatModel.Comment(JSON: item.value as! [String : AnyObject]) //비교해줄 comment, 이 값을 토대로 update 시켜줌
+                comment_modify?.readUsers[self.uid!] = true
+                readUserDic[key] = comment_modify?.toJSON() as! NSDictionary //Firebase가 NSDictionary만 지원한다.
+                print("readUserDic: \(readUserDic[key])" )
                 self.comments.append(comment!)
             }
             
-            let nsDic = readUserDic as NSDictionary
-            snapshot.ref.updateChildValues(nsDic as! [AnyHashable: Any], withCompletionBlock: {(error, reference) in
-                self.tableView.reloadData()
+            if self.comments.count > 0 {
+                let nsDic = readUserDic as NSDictionary
                 
-                if self.comments.count > 0 {
-                    self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
-                }
-            })
+                //유저의 커멘트가 uid를 가지고 있다면 업데이트 시킨다. 예전에는 uid가 있던 없던간에 다 update 시켜버림
+                snapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: {(error, reference) in
+                    
+                    print("Updated Value : \(reference)")
+                    
+                    self.tableView.reloadData()
+                    
+                    if self.comments.count > 0 {
+                        self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                    }
+                })
+                
+            }
+            
+            
+            
             
         })
+        
+        
         
     }
     
     func setReadCount(label: UILabel?, position: Int?){
         let readCounter = self.comments[position!].readUsers.count //db에서 불러온 값
-        Database.database().reference().child("chatrooms").child(chatRoomUid!).child("users").observeSingleEvent(of: DataEventType.value, with: {(snapshot) in
+        
+        //People count가 nil일 때만 값을 불러옴. - 서버 과부하를 막아줌. (읽은 사람)
+        if(peopleCount == nil){
             
-            let dictionary = snapshot.value as! [String: Any]
-            let noReadCount = dictionary.count - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
+            Database.database().reference().child("chatrooms").child(chatRoomUid!).child("users").observeSingleEvent(of: DataEventType.value, with: {(snapshot) in
+                
+                let dictionary = snapshot.value as! [String: Any]
+                self.peopleCount = dictionary.count
+                let noReadCount = self.peopleCount! - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
+                
+                if(noReadCount > 0){
+                    label?.isHidden = false
+                    label!.text = String(noReadCount)
+                } else {
+                    label?.isHidden = true
+                }
+                
+            })
+            
+            //People count가 nil이 아니면 그냥 연산만 해준다.
+        } else {
+            
+            let noReadCount = peopleCount! - readCounter //전체 db dictionary count - db에서 불러온 값의 유저 count
             
             if(noReadCount > 0){
                 label?.isHidden = false
@@ -222,7 +259,7 @@ class ChatViewController: UIViewController {
                 label?.isHidden = true
             }
             
-        })
+        }
         
     }
 }
@@ -235,14 +272,12 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        
         //말풍선 적용
         if self.comments[indexPath.row].uid == uid {
             let view = tableView.dequeueReusableCell(withIdentifier: "MyMessageCell", for: indexPath) as! MyMessageCell
             view.labelMessage!.text = self.comments[indexPath.row].message
             view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
-                
+            
             if let time: Int = self.comments[indexPath.row].timestamp {
                 print(time)
                 view.myTimestamp.text = time.toDayTime
@@ -257,20 +292,19 @@ extension ChatViewController : UITableViewDataSource, UITableViewDelegate {
             view.labelMessage.text = self.comments[indexPath.row].message
             view.labelMessage.numberOfLines = 0 //여러줄로 나눠줄 수 있음
             
-            
             if let time: Int = self.comments[indexPath.row].timestamp {
                 view.destinationTimestamp.text = time.toDayTime
             }
             
             let url = URL(string: self.userModel!.profileImageUrl!)
             
-        
+            
             URLSession.shared.dataTask(with: url!, completionHandler: {(data, response, error) in
                 DispatchQueue.main.async {
                     if let imageData = data {
-                       view.imageViewProfile!.image = UIImage(data: imageData)
+                        view.imageViewProfile!.image = UIImage(data: imageData)
                     }
-                 
+                    
                     view.imageViewProfile?.layer.cornerRadius = view.imageViewProfile.frame.width / 2
                     view.imageViewProfile.clipsToBounds = true
                 }
