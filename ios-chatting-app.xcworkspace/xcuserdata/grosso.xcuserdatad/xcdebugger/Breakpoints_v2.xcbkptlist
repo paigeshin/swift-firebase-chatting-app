@@ -14,8 +14,8 @@
             filePath = "ios-chatting-app/Controller/ChatViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "336"
-            endingLineNumber = "336"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "DestinationMessageCell"
             landmarkType = "3">
             <Locations>

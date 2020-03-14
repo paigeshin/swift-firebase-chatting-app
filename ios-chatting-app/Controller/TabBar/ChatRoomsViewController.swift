@@ -37,6 +37,7 @@ class ChatRoomsViewController: UIViewController {
             for item in snapshot.children.allObjects as! [DataSnapshot] {
                 if let chatroomic = item.value as? [String:AnyObject]{
                     let chatModel = ChatModel(JSON: chatroomic)
+                    print("ChatModel \(chatModel!.users)")
                     self.chatrooms.append(chatModel!)
                 }
             }
@@ -79,7 +80,6 @@ extension ChatRoomsViewController : UITableViewDelegate, UITableViewDataSource {
             userModel.userName = dictionary[K.Firebase.UserDatabase.name] as? String
             userModel.uid = dictionary[K.Firebase.UserDatabase.uid] as? String
             
-            
             cell.labelTitle.text = userModel.userName
             let url = URL(string: userModel.profileImageUrl!)
             
@@ -95,10 +95,14 @@ extension ChatRoomsViewController : UITableViewDelegate, UITableViewDataSource {
                 }
             }.resume()
             
-            let lastMessageKey = self.chatrooms[indexPath.row].comments.keys.sorted(){$0 > $1} //sorting 오름차순으로 가져옴
-            cell.labelLastMessage.text = self.chatrooms[indexPath.row].comments[lastMessageKey[0]]?.message //0번이 가장 최근 메시지임. (채팅방 last message)
-            let unixTime = self.chatrooms[indexPath.row].comments[lastMessageKey[0]]?.timestamp //Comment 내부에 timestamp가 있음
-            cell.labelTimestamp.text = unixTime?.toDayTime
+            if self.chatrooms[indexPath.row].comments.count > 0 {
+                let lastMessageKey = self.chatrooms[indexPath.row].comments.keys.sorted(){$0 > $1} //sorting 오름차순으로 가져옴
+                cell.labelLastMessage.text = self.chatrooms[indexPath.row].comments[lastMessageKey[0]]?.message //0번이 가장 최근 메시지임. (채팅방 last message)
+                let unixTime = self.chatrooms[indexPath.row].comments[lastMessageKey[0]]?.timestamp //Comment 내부에 timestamp가 있음
+                cell.labelTimestamp.text = unixTime?.toDayTime
+            }
+            
+
             
         }
         
@@ -113,10 +117,21 @@ extension ChatRoomsViewController : UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let destionationUid = destionationUsers[indexPath.row]
-        let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController") as! ChatViewController
-        view.destinationUid = destionationUid
-        self.navigationController?.pushViewController(view, animated: true)
+        
+        print("destionation users : \(chatrooms[indexPath.row].users.count)" )
+        
+        if(chatrooms[indexPath.row].users.count > 2){
+            let view = self.storyboard?.instantiateViewController(identifier: "ChatGroupViewController") as! ChatGroupViewController
+            self.navigationController?.pushViewController(view, animated: true)
+        } else {
+            let destionationUid = destionationUsers[indexPath.row]
+            let view = self.storyboard?.instantiateViewController(identifier: "ChatViewController") as! ChatViewController
+            view.destinationUid = destionationUid
+            view.chatroomIdFromChatroomView = chatrooms[indexPath.row].chatroomId
+            self.navigationController?.pushViewController(view, animated: true)
+        }
+        
+
     }
     
 }

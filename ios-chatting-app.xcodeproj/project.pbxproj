@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		285326D8241CA601002C11AE /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326D7241CA601002C11AE /* AccountViewController.swift */; };
 		285326DB241CCEC4002C11AE /* SelectFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326DA241CCEC4002C11AE /* SelectFriendViewController.swift */; };
+		285326DD241CE527002C11AE /* ChatGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285326DC241CE527002C11AE /* ChatGroupViewController.swift */; };
 		2860761E240BCCF80058623F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761D240BCCF80058623F /* AppDelegate.swift */; };
 		28607620240BCCF80058623F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2860761F240BCCF80058623F /* SceneDelegate.swift */; };
 		28607622240BCCF80058623F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28607621240BCCF80058623F /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		285326D7241CA601002C11AE /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		285326D9241CCBFC002C11AE /* BEMCheckbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BEMCheckbox.h; sourceTree = "<group>"; };
 		285326DA241CCEC4002C11AE /* SelectFriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectFriendViewController.swift; sourceTree = "<group>"; };
+		285326DC241CE527002C11AE /* ChatGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatGroupViewController.swift; sourceTree = "<group>"; };
 		2860761A240BCCF80058623F /* ios-chatting-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-chatting-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2860761D240BCCF80058623F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2860761F240BCCF80058623F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				28607638240BDD0D0058623F /* LoginViewController.swift */,
 				2860763A240BEBB10058623F /* SignUpViewController.swift */,
 				28CFB4F2240FB26700A47EAD /* ChatViewController.swift */,
+				285326DC241CE527002C11AE /* ChatGroupViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				28CFB4EF240F8CFF00A47EAD /* UserModel.swift in Sources */,
 				285326D8241CA601002C11AE /* AccountViewController.swift in Sources */,
 				28AE9ABA2411148D00F59AE9 /* ChatRoomsViewController.swift in Sources */,
+				285326DD241CE527002C11AE /* ChatGroupViewController.swift in Sources */,
 				28607622240BCCF80058623F /* ViewController.swift in Sources */,
 				2860761E240BCCF80058623F /* AppDelegate.swift in Sources */,
 				285326DB241CCEC4002C11AE /* SelectFriendViewController.swift in Sources */,

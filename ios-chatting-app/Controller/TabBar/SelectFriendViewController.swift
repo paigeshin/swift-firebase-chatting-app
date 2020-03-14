@@ -25,8 +25,6 @@ class SelectFriendViewController: UIViewController, BEMCheckBoxDelegate{
         
     }
     
-
-    
     func createRoom(){
         
         let myUid = Auth.auth().currentUser?.uid

@@ -33,6 +33,8 @@ class ChatViewController: UIViewController {
     var observe: UInt?
     var peopleCount: Int?
     
+    var chatroomIdFromChatroomView: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.separatorStyle = UITableViewCell.SeparatorStyle.none
@@ -40,7 +42,15 @@ class ChatViewController: UIViewController {
         tableView.dataSource = self 
         uid = Auth.auth().currentUser?.uid
         sendButton.addTarget(self, action: #selector(createRoom), for: .touchUpInside)
-        checkChatRoom()
+        
+        if let chetroomId = chatroomIdFromChatroomView {
+            chatRoomUid = chetroomId
+            print(chetroomId)
+            getDestinationInfo()
+        } else {
+            checkChatRoom()
+        }
+           
         self.tabBarController?.tabBar.isHidden = true //텝바 안보여주기
         
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
@@ -96,17 +106,23 @@ class ChatViewController: UIViewController {
     }
     
     @objc func createRoom(){
+        
+        let dbRef = Database.database().reference().child("chatrooms").childByAutoId()
+        
         let createRoomInfo: Dictionary<String, Any> = [
             "users" : [
                 uid: true,
                 destinationUid: true
-            ]
+            ],
+            "chatroomId" : dbRef.key!
         ]
         
+        
+        print("chatroomUid 체크\(chatRoomUid)")
         //방이 존재하는지 확인
         if chatRoomUid == nil{
             self.sendButton.isEnabled = false
-            Database.database().reference().child("chatrooms").childByAutoId().setValue(createRoomInfo) { (error, dbRef) in
+            dbRef.setValue(createRoomInfo) { (error, dbRef) in
                 if error == nil {
                     self.checkChatRoom()
                 }
