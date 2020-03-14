@@ -22,9 +22,7 @@ class SelectFriendViewController: UIViewController, BEMCheckBoxDelegate{
         tableView.delegate = self
         tableView.dataSource = self
         loadUsers()
-        
-        
-        
+    
     }
     
     func createRoom(){
@@ -35,7 +33,15 @@ class SelectFriendViewController: UIViewController, BEMCheckBoxDelegate{
         print(users)
         
         //초대할 친구들을 담은 array를 db에 추가시켜줌
-        Database.database().reference().child("chatrooms").childByAutoId().child("users").setValue(nsDic)
+        let ref = Database.database().reference().child("chatrooms").childByAutoId()
+        ref.child("users").setValue(nsDic)
+        ref.child("chatroomId").setValue(ref.key)
+        
+        let view = self.storyboard?.instantiateViewController(withIdentifier: "ChatGroupViewController") as? ChatGroupViewController
+        view?.destinationRoom = ref.key
+        
+        //Navigation은 present 대신 push를 사용한다.
+        self.navigationController?.pushViewController(view!, animated: true)
         
     }
     

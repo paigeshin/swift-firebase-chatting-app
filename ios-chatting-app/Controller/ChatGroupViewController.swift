@@ -87,17 +87,29 @@ class ChatGroupViewController: UIViewController {
             if self.comments.count > 0 {
                 let nsDic = readUserDic as NSDictionary
                 
-                //유저의 커멘트가 uid를 가지고 있다면 업데이트 시킨다. 예전에는 uid가 있던 없던간에 다 update 시켜버림
-                snapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: {(error, reference) in
+                //유저의 커멘트들이 나의 uid를 가지고 있지 않다면 업데이트 시켜줌
+                if !((self.comments.last?.readUsers.keys.contains(self.uid!))!) {
+                  
+                    snapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: {(error, reference) in
+                        
+                        print("Updated Value : \(reference)")
+                        
+                        self.tableView.reloadData()
+                        
+                        if self.comments.count > 0 {
+                            self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                        }
+                    })
+                } else {
                     
-                    print("Updated Value : \(reference)")
-                    
+
                     self.tableView.reloadData()
                     
                     if self.comments.count > 0 {
-                        self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: false)
+                        self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
                     }
-                })
+                    
+                }
                 
             }
 

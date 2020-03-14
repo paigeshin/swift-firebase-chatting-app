@@ -153,6 +153,8 @@ class ChatViewController: UIViewController {
      */
     func checkChatRoom(){
         
+        print("checkChatRoom에 들어옴")
+        
         //먼저 chatroom을 다 찾고 users uid가 있는지 찾는다.
         Database.database().reference().child("chatrooms").queryOrdered(byChild: "users/"+uid!).queryEqual(toValue: true)
             .observeSingleEvent(of: DataEventType.value) { (snapshot) in
@@ -171,6 +173,7 @@ class ChatViewController: UIViewController {
                                 self.chatRoomUid = item.key
                                 self.sendButton.isEnabled = true
                                 self.getDestinationInfo() //메시지 가져오기
+                                print("해당 방의 item key \(item.key)")
                             }
                             
                         }
@@ -213,23 +216,40 @@ class ChatViewController: UIViewController {
                 comment_modify?.readUsers[self.uid!] = true
                 readUserDic[key] = comment_modify?.toJSON() as! NSDictionary //Firebase가 NSDictionary만 지원한다.
                 print("readUserDic: \(readUserDic[key])" )
+                
+                
+                print("코멘트: \(comment!)")
                 self.comments.append(comment!)
             }
             
+            let nsDic = readUserDic as NSDictionary
+            
             if self.comments.count > 0 {
-                let nsDic = readUserDic as NSDictionary
                 
-                //유저의 커멘트가 uid를 가지고 있다면 업데이트 시킨다. 예전에는 uid가 있던 없던간에 다 update 시켜버림
-                snapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: {(error, reference) in
-                    
-                    print("Updated Value : \(reference)")
+                  //유저의 커멘트들이 uid를 가지고 있지 않다면 업데이트 시켜줌
+                if !((self.comments.last?.readUsers.keys.contains(self.uid!))!) {
+                  
+                    snapshot.ref.updateChildValues(nsDic as! [AnyHashable : Any], withCompletionBlock: {(error, reference) in
+                        
+                        print("Updated Value : \(reference)")
+                        
+                        self.tableView.reloadData()
+                        
+                        if self.comments.count > 0 {
+                            self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
+                        }
+                    })
+                } else {
+                   
                     
                     self.tableView.reloadData()
                     
                     if self.comments.count > 0 {
                         self.tableView.scrollToRow(at: IndexPath(item: self.comments.count - 1, section: 0), at: UITableView.ScrollPosition.bottom, animated: true)
                     }
-                })
+                        
+                  
+                }
                 
             }
             
@@ -237,8 +257,6 @@ class ChatViewController: UIViewController {
             
             
         })
-        
-        
         
     }
     
